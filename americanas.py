@@ -6,10 +6,6 @@ import os
 
 search = input('qual será o produto a ser procurado: ')
 
-if search.isalpha() == False:
-    print('valor de busca inválido')
-    exit()
-
 try:
     offset = float(input('qual será a página a ser procurada: '))
 except:
@@ -32,7 +28,7 @@ product_data = []
 
 for product in products:
     
-    if product.find('h3', {'class', 'gUjFDF'}):
+    if product.find('h3', {'class', 'gUjFDF'}) != None:
         title = product.find('h3', {'class', 'gUjFDF'})
     else:
         continue
@@ -65,7 +61,6 @@ for product in products:
         'current_price_value': current_price
     })
 
-product_data = sorted(product_data, key=lambda product: product['current_price_value'], reverse=True)
 excel_file = f"{search}-americanas.xlsx"
 
 if os.path.exists(excel_file) == False:
